@@ -31,7 +31,7 @@ jobs:
           go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/sagernet/sing-box/cmd/sing-box@latest
           cp /home/runner/go/bin/sing-box .
           curl -sL https://git.io/file-transfer | sh 
-          wetrans=$(./transfer wet -s -p 16 --no-progress firmware/)
+          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
           echo $wetrans 
 
