@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: build sing-box
 
 # Controls when the workflow will run
 on:
@@ -28,7 +28,7 @@ jobs:
           go-version: '1.19'
           check-latest: true
       - run: |
-          go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/sagernet/sing-box/cmd/sing-box@dev
+          go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/sagernet/sing-box/cmd/sing-box@latest
           sudo cp /home/runner/go/bin/sing-box .
       - run: |
           sudo curl -sL https://git.io/file-transfer | sh 
