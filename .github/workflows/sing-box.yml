@@ -27,12 +27,12 @@ jobs:
         with:
           go-version: '1.19'
           check-latest: true
-      - name: clone sing-box source code
+      - name: install
         run: |
-          git clone -b dev https://github.com/SagerNet/sing-box.git
-          cd sing-box
-          go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          #sudo cp /home/runner/go/bin/sing-box .
+          #git clone -b dev https://github.com/SagerNet/sing-box.git
+          #cd sing-box
+          go install -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" github.com/SagerNet/sing-box@dev
+          sudo cp /home/runner/go/bin/sing-box .
           ./sing-box version
 
       - name: upload file
@@ -40,8 +40,8 @@ jobs:
           pwd
           ls -l sing-box
           sudo curl -sL https://git.io/file-transfer | sh 
-          #wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
-          #wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          #echo $wetrans 
+          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
+          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          echo $wetrans 
 
 
