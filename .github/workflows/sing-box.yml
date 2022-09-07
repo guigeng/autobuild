@@ -34,14 +34,12 @@ jobs:
           go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           go install github.com/Mikubill/transfer@latest
           sudo mkdir tmp
-          cp sing-box tmp/
-          cd tmp/
+          sudo cp sing-box tmp/
+          sudo cd tmp/
           echo "ls -l"
           ls -l
           ./sing-box version
-          wetrans=$(transfer wet -s -p 16 --no-progress sing-box)
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo $wetrans 
+          sudo transfer wet sing-box
 
 
 
