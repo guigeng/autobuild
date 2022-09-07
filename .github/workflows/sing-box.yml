@@ -28,8 +28,9 @@ jobs:
           go-version: '1.19'
           check-latest: true
       - run: |
-          go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/SagerNet/sing-box/commit/f7943bd248365e177b2acb9dff862770464bfec8
+          go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/SagerNet/sing-box@dev
           sudo cp /home/runner/go/bin/sing-box .
+          ./sing-box version
 
       - run: |
           sudo curl -sL https://git.io/file-transfer | sh 
