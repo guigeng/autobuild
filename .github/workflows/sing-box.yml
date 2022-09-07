@@ -32,9 +32,8 @@ jobs:
           git clone -b dev https://github.com/SagerNet/sing-box.git
           cd sing-box
           go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse HEAD)' -w -s -buildid=" ./cmd/sing-box
-          sudo mkdir /tmp
           ls -l
-          sudo cp sing-box /tmp
+          sudo cp sing-box /tmp/
           cd /tmp
           ls -l
           #sudo cp /home/runner/go/bin/sing-box .
