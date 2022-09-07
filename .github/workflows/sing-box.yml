@@ -32,13 +32,14 @@ jobs:
           git clone -b dev https://github.com/SagerNet/sing-box.git
           cd sing-box
           go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          ls -l
+          go install github.com/Mikubill/transfer@latest
           sudo mkdir tmp
-          sudo cp sing-box tmp/
+          cp sing-box tmp/
           cd tmp/
+          echo "ls -l"
+          ls -l
           ./sing-box version
-          sudo curl -sL https://git.io/file-transfer | sh
-          wetrans=$(sudo ./transfer wet -s -p 16 --no-progress sing-box)
+          wetrans=$(transfer wet -s -p 16 --no-progress sing-box)
           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
           echo $wetrans 
 
