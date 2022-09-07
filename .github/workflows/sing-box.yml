@@ -33,7 +33,8 @@ jobs:
           cd sing-box
           go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse HEAD)' -w -s -buildid=" ./cmd/sing-box
           ls -l
-          sudo cp sing-box /tmp/
+          sudo mkdir tmp
+          sudo cp sing-box tmp/
           cd /tmp
           ls -l
           #sudo cp /home/runner/go/bin/sing-box .
@@ -43,9 +44,9 @@ jobs:
         run: |
           pwd
           ls -l sing-box
-          sudo curl -sL https://git.io/file-transfer | sh 
-          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo $wetrans 
+          #sudo curl -sL https://git.io/file-transfer | sh 
+          #wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
+          #wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          #echo $wetrans 
 
 
