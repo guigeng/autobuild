@@ -35,7 +35,7 @@ jobs:
           go install github.com/Mikubill/transfer@latest
           sudo mkdir tmp
           sudo cp sing-box tmp/
-          sudo cd tmp/
+          cd tmp/
           echo "ls -l"
           ls -l
           ./sing-box version
