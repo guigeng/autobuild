@@ -39,7 +39,7 @@ jobs:
           echo "ls -l"
           ls -l
           ./sing-box version
-          sudo transfer wet sing-box
+          transfer wet sing-box
 
 
 
