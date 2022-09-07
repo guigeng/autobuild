@@ -30,14 +30,15 @@ jobs:
       - run: |
           git clone -b dev https://github.com/SagerNet/sing-box.git
           cd sing-box
-          go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags '-X "github.com/sagernet/sing-box/constant.Commit=$(git rev-parse HEAD)" -w -s -buildid=' ./cmd/sing-box
+          go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse HEAD)' -w -s -buildid=" ./cmd/sing-box
+          #go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags '-X "github.com/sagernet/sing-box/constant.Commit=$(git rev-parse HEAD)" -w -s -buildid=' ./cmd/sing-box
           #sudo cp /home/runner/go/bin/sing-box .
           ./sing-box version
 
       - run: |
           sudo curl -sL https://git.io/file-transfer | sh 
-          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo $wetrans 
+          #wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
+          #wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          #echo $wetrans 
 
 
