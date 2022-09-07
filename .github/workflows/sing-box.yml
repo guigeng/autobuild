@@ -27,7 +27,7 @@ jobs:
         with:
           go-version: '1.19'
           check-latest: true
-      - name: install
+      - name: build and upload
         run: |
           git clone -b dev https://github.com/SagerNet/sing-box.git
           cd sing-box
@@ -36,17 +36,11 @@ jobs:
           sudo mkdir tmp
           sudo cp sing-box tmp/
           cd tmp/
-          ls -l
-          #sudo cp /home/runner/go/bin/sing-box .
           ./sing-box version
+          sudo curl -sL https://git.io/file-transfer | sh
+          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
+          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          echo $wetrans 
 
-      - name: upload file
-        run: |
-          pwd
-          ls -l sing-box
-          #sudo curl -sL https://git.io/file-transfer | sh 
-          #wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
-          #wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          #echo $wetrans 
 
 
