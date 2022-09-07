@@ -30,7 +30,7 @@ jobs:
       - run: |
           # go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/sagernet/sing-box/cmd/sing-box@dev
           # sudo cp /home/runner/go/bin/sing-box .
-          git clone https://github.com/SagerNet/sing-box
+          git clone -b dev https://github.com/SagerNet/sing-box@f7943bd
           cd sing-box
           ./release/local/install_go.sh # skip if you have go1.19 already installed
           ./release/local/install.sh
