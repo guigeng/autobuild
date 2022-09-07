@@ -28,17 +28,13 @@ jobs:
           go-version: '1.19'
           check-latest: true
       - run: |
-          # go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/sagernet/sing-box/cmd/sing-box@dev
-          # sudo cp /home/runner/go/bin/sing-box .
-          git clone -b dev https://github.com/SagerNet/sing-box@f7943bd
-          cd sing-box
-          ./release/local/install_go.sh # skip if you have go1.19 already installed
-          ./release/local/install.sh
-          sing-box version
-      #- run: |
-      #    sudo curl -sL https://git.io/file-transfer | sh 
-      #    wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
-      #    wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-      #    echo $wetrans 
+          go install -v -tags with_clash_api,with_quic,with_grpc,with_acme github.com/SagerNet/sing-box/commit/f7943bd248365e177b2acb9dff862770464bfec8
+          sudo cp /home/runner/go/bin/sing-box .
+
+      - run: |
+          sudo curl -sL https://git.io/file-transfer | sh 
+          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
+          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          echo $wetrans 
 
 
