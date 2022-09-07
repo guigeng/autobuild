@@ -37,10 +37,11 @@ jobs:
 
       - name: upload file
         run: |
-          ls sing-box
+          pwd
+          ls -l sing-box
           sudo curl -sL https://git.io/file-transfer | sh 
-          wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
-          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
-          echo $wetrans 
+          #wetrans=$(./transfer wet -s -p 16 --no-progress sing-box)
+          #wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          #echo $wetrans 
 
 
