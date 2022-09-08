@@ -37,9 +37,6 @@ jobs:
           sudo mkdir tmp
           sudo cp sing-box tmp/
           cd tmp/
-          echo "ls -l"
-          ls -l
-          ./sing-box version
           transfer wet sing-box
 
 
