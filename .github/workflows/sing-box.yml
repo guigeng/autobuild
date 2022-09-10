@@ -52,9 +52,9 @@ jobs:
           sudo rm -rf sing-box tmp/
           GOOS=darwin GOARCH=amd64 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           sudo mkdir tmp/
-          sudo cp sing-box /tmp
-          cd /tmp
-          transfer web sing-box
+          sudo cp sing-box tmp/
+          cd tmp/
+          transfer wet sing-box
           
           
 
