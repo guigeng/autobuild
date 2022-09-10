@@ -42,7 +42,8 @@ jobs:
           sudo mkdir tmp
           sudo cp sing-box tmp/
           cd tmp/
-          transfer wet sing-box
+          wetrans1=$(transfer wet -s -p 16 --no-progress sing-box)
+          wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
           
       - name: macos amd64
         run: |
@@ -54,7 +55,13 @@ jobs:
           sudo mkdir tmp/
           sudo cp sing-box tmp/
           cd tmp/
-          transfer wet sing-box
+          wetrans2=$(transfer wet -s -p 16 --no-progress sing-box)
+          wetrans2=$(echo $wetrans2 | grep -o -E "https[^ ]*")
+          
+      - name: echo download URL
+        run: |
+          echo "Linux AMD64 Download URL: $wetrans1"
+          echo "MacOS AMD64 Download URL: $wetrans2"
           
           
 
