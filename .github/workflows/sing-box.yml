@@ -44,6 +44,8 @@ jobs:
           cd tmp/
           wetrans1=$(transfer wet -s -p 16 --no-progress sing-box)
           wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
+          echo "Linux AMD64 Download URL: $wetrans1"
+          
           
       - name: macos amd64
         run: |
@@ -57,6 +59,7 @@ jobs:
           cd tmp/
           wetrans2=$(transfer wet -s -p 16 --no-progress sing-box)
           wetrans2=$(echo $wetrans2 | grep -o -E "https[^ ]*")
+          echo "MacOS AMD64 Download URL: $wetrans2"
           
       - name: echo download URL
         run: |
