@@ -35,14 +35,19 @@ jobs:
           git clone -b dev https://github.com/SagerNet/sing-box.git
           cd sing-box
           # for mac
-          GOOS=darwin GOARCH=amd64 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          #GOOS=darwin GOARCH=amd64 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           # cgo disable
           #CGO_ENABLED=0 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          #go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           sudo mkdir tmp
           sudo cp sing-box tmp/
           cd tmp/
           transfer wet sing-box
+          
+      - name: macos amd64
+        run: |
+          pwd
+          ls -l
 
 
 
