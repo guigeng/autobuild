@@ -38,13 +38,13 @@ jobs:
           #GOOS=darwin GOARCH=amd64 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           # cgo disable
           #CGO_ENABLED=0 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          CGO_ENABLED=0 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           sudo mkdir tmp
           sudo cp sing-box tmp/
           cd tmp/
           wetrans1=$(transfer wet -s -p 16 --no-progress sing-box)
           wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
-          echo "Linux AMD64 Download URL: $wetrans1"
+          echo "Linux AMD64 Download URL: $wetrans1" >> /tmp/download.txt
           
           
       - name: macos amd64
@@ -53,16 +53,17 @@ jobs:
           ls -l
           cd sing-box/
           sudo rm -rf sing-box tmp/
-          GOOS=darwin GOARCH=amd64 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -v -trimpath -tags 'with_clash_api,with_quic' -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           sudo mkdir tmp/
           sudo cp sing-box tmp/
           cd tmp/
           wetrans2=$(transfer wet -s -p 16 --no-progress sing-box)
           wetrans2=$(echo $wetrans2 | grep -o -E "https[^ ]*")
-          echo "MacOS AMD64 Download URL: $wetrans2"
+          echo "MacOS AMD64 Download URL: $wetrans2" >> /tmp/download.txt
           
       - name: echo download URL
         run: |
+          cat /tmp/download.txt
           echo "Linux AMD64 Download URL: $wetrans1"
           echo "MacOS AMD64 Download URL: $wetrans2"
           
