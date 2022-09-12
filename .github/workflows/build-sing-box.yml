@@ -45,7 +45,7 @@ jobs:
           sudo curl -sL https://git.io/file-transfer | sh 
           ls -l
           pwd
-          wetrans1=$(./transfer wet -s -p 16 --no-progress sing-box-${{matrix.goos}}-${{matrix.goarch}})
+          wetrans1=$(./transfer wet -s -p 16 --no-progress sing-box)
           wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
           echo "${{matrix.goos}} ${{matrix.goarch}} Download URL: $wetrans1" >> /tmp/download.txt
           
