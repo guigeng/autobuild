@@ -30,10 +30,7 @@ jobs:
         with:
           go-version: '1.19'
           check-latest: true
-      - name: install transfer
-        run: |
-          pwd
-          #go install github.com/Mikubill/transfer@latest
+
       - name: clone repo
         run: |
           pwd
@@ -42,7 +39,8 @@ jobs:
       - name: build
         run: |
           cd sing-box
-          go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          #go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          go build -v -o ../tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           cd ../tmp/
           sudo curl -sL https://git.io/file-transfer | sh 
           ls -l
