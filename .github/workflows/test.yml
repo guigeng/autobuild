@@ -39,7 +39,6 @@ jobs:
           mkdir tmp/
       - name: build
         run: |
-          git clone -b dev https://github.com/SagerNet/sing-box.git
           cd sing-box
           go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           cd tmp/
