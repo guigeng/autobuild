@@ -44,8 +44,10 @@ jobs:
           cd sing-box
           go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           cd ../tmp/
-          go install github.com/Mikubill/transfer@latest
-          wetrans1=$(transfer wet -s -p 16 --no-progress sing-box-${{matrix.goos}}-${{matrix.goarch}})
+          sudo curl -sL https://git.io/file-transfer | sh 
+          ls -l
+          pwd
+          wetrans1=$(./transfer wet -s -p 16 --no-progress sing-box-${{matrix.goos}}-${{matrix.goarch}})
           wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
           echo "${{matrix.goos}} ${{matrix.goarch}} Download URL: $wetrans1" >> /tmp/download.txt
           
