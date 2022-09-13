@@ -50,6 +50,9 @@ jobs:
           ls -l
           echo "list ls -l"
           cd sing-box
+          pwd 
+          ls -l
+          echo "-----------------"
           #go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           # go build -v -o ../tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           cd ../tmp/
