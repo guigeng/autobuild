@@ -1,0 +1,72 @@
+
+name: test
+
+
+on:
+  #push:
+    #branches: [ "main" ]
+  #pull_request:
+    #branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        goos: [linux,darwin]
+        goarch: [amd64]
+
+    runs-on: ubuntu-latest
+    env:
+      GOOS: ${{matrix.goos}}
+      GOARCH: ${{matrix.goarch}}
+      TAGS: with_clash_api,with_quic,with_grpc,with_wireguard,with_ech,with_utls
+      CGO_ENABLED: 0
+
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v3
+        with:
+          repository: SagerNet/sing-box
+          path: sing-box
+          ref: dev
+          
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.19'
+          check-latest: true
+
+      # - name: clone repo
+      #   run: |
+      #     pwd
+      #     git clone -b dev https://github.com/SagerNet/sing-box.git
+      #     mkdir tmp/
+      - name: build
+        run: |
+          pwd
+          echo "pwd"
+          sudo mkdir tmp
+          ls -l
+          echo "list ls -l"
+          cd sing-box
+          #go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          # go build -v -o ../tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          cd ../tmp/
+          # sudo curl -sL https://git.io/file-transfer | sh 
+          ls -l
+          pwd
+          # wetrans1=$(./transfer wet -s -p 16 --no-progress sing-box)
+          # wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
+          # echo "${{matrix.goos}} ${{matrix.goarch}} Download URL: $wetrans1" >> /tmp/download.txt
+          
+      - name: echo download URL
+        run: |
+          echo "url"
+          # cat /tmp/download.txt
+
+          
+          
+
+
+
