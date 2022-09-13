@@ -26,21 +26,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          repository: SagerNet/sing-box
-          path: sing-box
-          ref: dev
           
       - uses: actions/setup-go@v3
         with:
           go-version: '1.19'
           check-latest: true
 
-#       - name: clone repo
-#         run: |
-#           pwd
-#           git clone -b dev https://github.com/SagerNet/sing-box.git
-#           mkdir tmp/
+      - name: clone repo
+        run: |
+          pwd
+          git clone -b dev https://github.com/SagerNet/sing-box.git
+          mkdir tmp/
       - name: build
         run: |
           sudo mkdir tmp
