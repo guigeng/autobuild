@@ -54,20 +54,20 @@ jobs:
           ls -l
           echo "-----------------"
           #go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          go build -v -o ../tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          cd ../tmp/
+          go build -v -o /tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
+          cd /tmp
           sudo curl -sL https://git.io/file-transfer | sh 
           ls -l
           pwd
           echo "uploading sing-box file"
           wetrans1=$(./transfer wet -s -p 16 --no-progress sing-box)
           wetrans1=$(echo $wetrans1 | grep -o -E "https[^ ]*")
-          echo "${{matrix.goos}} ${{matrix.goarch}} Download URL: $wetrans1" >> /tmp/download.txt
+          echo "${{matrix.goos}} ${{matrix.goarch}} Download URL: $wetrans1" >> download.txt
           
       - name: echo download URL
         run: |
-          echo "url"
-          # cat /tmp/download.txt
+          #echo "url"
+          cat download.txt
 
           
           
