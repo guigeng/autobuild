@@ -20,7 +20,7 @@ jobs:
     env:
       GOOS: ${{matrix.goos}}
       GOARCH: ${{matrix.goarch}}
-      TAGS: with_clash_api,with_quic,with_grpc,with_wireguard,with_ech,with_utls
+      TAGS: with_clash_api,with_quic,with_grpc,with_wireguard,with_gvisor
       CGO_ENABLED: 0
 
     steps:
