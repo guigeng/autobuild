@@ -38,10 +38,6 @@ jobs:
 
       - name: build
         run: |
-          if [ ${{matrix.goos}} = "darwin" ];then
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            brew install FiloSottile/musl-cross/musl-cross
-          fi
           cd sing-box
           #go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
           go build -v -o /tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-w -s -buildid=" ./cmd/sing-box
