@@ -21,7 +21,7 @@ jobs:
       GOOS: ${{matrix.goos}}
       GOARCH: ${{matrix.goarch}}
       TAGS: with_clash_api,with_quic,with_grpc,with_wireguard,with_gvisor
-      CGO_ENABLED: 1
+      CGO_ENABLED: 0
 
     steps:
       - name: check out repo
@@ -41,7 +41,7 @@ jobs:
           sudo apt install musl-dev -y
           cd sing-box
           #go build -v -o ../tmp/sing-box-${{matrix.goos}}-${{matrix.goarch}} -trimpath -tags ${TAGS} -ldflags "-X 'github.com/sagernet/sing-box/constant.Commit=$(git rev-parse --short HEAD)' -w -s -buildid=" ./cmd/sing-box
-          go build -buildmode=c-shared -v -o /tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-w -s -buildid=" ./cmd/sing-box
+          go build -v -o /tmp/sing-box -trimpath -tags ${TAGS} -ldflags "-w -s -buildid=" ./cmd/sing-box
           cd /tmp
           sudo curl -sL https://git.io/file-transfer | sh 
           echo "uploading sing-box file"
