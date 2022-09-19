@@ -38,7 +38,7 @@ jobs:
 
       - name: build
         run: |
-          if [ ${{martrix.goos}} = "darwin" ];then
+          if [ ${{matrix.goos}} = "darwin" ];then
             sudo /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             brew install FiloSottile/musl-cross/musl-cross
           fi
