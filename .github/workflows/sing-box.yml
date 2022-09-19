@@ -21,7 +21,7 @@ jobs:
       GOOS: ${{matrix.goos}}
       GOARCH: ${{matrix.goarch}}
       TAGS: with_clash_api,with_quic,with_grpc,with_wireguard,with_gvisor
-      CGO_ENABLED: 0
+      CGO_ENABLED: 1
 
     steps:
       - name: check out repo
