@@ -1,4 +1,4 @@
-name: Build sing-box for Linux AMD64
+name: Build sing-box for Linux x86_64
 
 
 on:
