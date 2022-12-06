@@ -1,4 +1,4 @@
-name: mosdns(CGO_ENABLED=0)
+name: mosdns for linux with cgo disabled
 
 
 on:
