@@ -48,5 +48,5 @@ jobs:
           
       - name: echo download URL
         run: |
-          cd /tmp
+          cd mosdns
           cat download.txt
