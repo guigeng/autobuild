@@ -1,4 +1,4 @@
-name: Build sing-box for Linux x86_64(CGO Enabled)
+name: sing-box for Linux x86_64(CGO Enabled)
 
 
 on:
