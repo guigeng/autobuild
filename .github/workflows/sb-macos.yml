@@ -1,4 +1,4 @@
-name: Build sing-box for MacOS(CGO Enabled)
+name: sing-box for MacOS(CGO Enabled)
 
 
 on:
