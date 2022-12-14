@@ -1,0 +1,58 @@
+name: mosdns v5
+
+
+on:
+  #push:
+    #branches: [ "main" ]
+  #pull_request:
+    #branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+#     strategy:
+#       matrix:
+#         goos: [linux,darwin]
+#         goarch: [amd64]
+
+    runs-on: ubuntu-latest
+    env:
+#       GOOS: ${{matrix.goos}}
+#       GOARCH: ${{matrix.goarch}}
+      CGO_ENABLED: 0
+
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v3
+        with:
+          repository: IrineSistiana/mosdns
+          path: mosdns
+          ref: v5
+          
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '1.19'
+          check-latest: true
+
+      - name: build
+        run: |
+          cd mosdns
+          go build -v -o /tmp/mosdns 
+          cd /tmp
+          sudo curl -sL https://git.io/file-transfer | sh 
+          echo "uploading mosdns file"
+          wetrans=$(./transfer wet -s -p 16 --no-progress mosdns)
+          wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+          echo "Download URL: $wetrans" >> download.txt
+          
+      - name: echo download URL
+        run: |
+          cd /tmp
+          cat download.txt
+
+          
+          
+
+
+
