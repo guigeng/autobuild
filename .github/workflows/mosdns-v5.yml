@@ -38,8 +38,10 @@ jobs:
       - name: build
         run: |
           cd mosdns
+          version=`git describe --tags --long --always`
+          echo $version
           # go build -v -o /tmp/mosdns 
-          go build -ldflags "-s -w -X main.version=`git describe --tags --long --always`" -trimpath -v -o /tmp/mosdns
+          go build -ldflags "-s -w -X main.version=${version}" -trimpath -v -o /tmp/mosdns
           cd /tmp
           sudo curl -sL https://git.io/file-transfer | sh 
           echo "uploading mosdns file"
